@@ -1,0 +1,12 @@
+
+public class TestThread extends Thread{
+
+	public TestThread(){
+		System.out.println("IN THE TEST THREAD CONSTRUCTOR 2");
+		this.run();
+	}
+	@Override
+    public void run(){
+		System.out.println("INSIDE THE TEST THREAD!!!");
+	}
+}

@@ -1,0 +1,40 @@
+
+import matlabcontrol.MatlabConnectionException;
+import matlabcontrol.MatlabProxy;
+import matlabcontrol.MatlabProxyFactory;
+
+import com.mathworks.jmi.*;
+public class OutputSignalThread extends Thread {
+
+	public Matlab matlabEngine = null;
+	
+	private MatlabProxyFactory factory;
+	private MatlabProxy proxy;
+	 
+	
+	public OutputSignalThread() throws MatlabConnectionException{
+		
+		 //Create a proxy, which we will use to control MATLAB -- this is an APU wrapper.
+	    this.factory = new MatlabProxyFactory();
+	    this.proxy = factory.getProxy();
+
+	    
+//		matlabEngine = new Matlab();
+//		Matlab.whenMatlabReady(this);
+	}
+	
+	@Override
+    public void run(){
+	    try
+	    {
+	     proxy.eval("Autodrill a = Autodrill");
+	    	Object obj = proxy.getVariable("a");
+	    	System.out.println("This is the class of Autodrill that the proxy returns: "+obj.getClass()+"\n");
+	    	
+	    	proxy.disconnect();
+	    } catch (Exception e) {
+	    	System.out.println("***ERROR OCCURED IN: OutputSignalThread***");
+	        System.out.println(e.toString());
+	    }
+    }
+}

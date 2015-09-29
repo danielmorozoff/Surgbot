@@ -1,0 +1,31 @@
+
+
+
+import com.mathworks.jmi.*;
+public class OutputSignalThread extends Thread {
+
+	public Matlab matlabEngine = null;
+
+	
+	public OutputSignalThread(){
+	    
+		matlabEngine = new Matlab();
+		Matlab.whenMatlabReady(this);
+	}
+	
+	@Override
+    public void run(){
+		 //Create a proxy, which we will use to control MATLAB -- this is an APU wrapper.
+	   
+
+	    try
+	    {
+	     matlabEngine.mtFevalConsoleOutput("eval", "Autodrill a = Autodrill".split(" "), 1);
+	    	
+	    	System.out.println("This is the class of Autodrill that the proxy returns: "+obj.getClass()+"\n");
+	    } catch (Exception e) {
+	    	System.out.println("***ERROR OCCURED IN: OutputSignalThread***");
+	        System.out.println(e.toString());
+	    }
+    }
+}

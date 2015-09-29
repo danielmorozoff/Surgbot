@@ -1,0 +1,17 @@
+
+public class OutputSignalThread extends Thread {
+
+	public OutputSignalThread(){
+		
+	}
+	
+	@Override
+    public void run(){
+	    try
+	    {
+	      
+	    } catch (Exception e) {
+	        System.out.println(e.toString());
+	    }
+    }
+}

@@ -1,0 +1,21 @@
+
+import com.mathworks.jmi.*;
+public class OutputSignalThread extends Thread {
+
+	public Matlab matlabEngine = null;
+	
+	public OutputSignalThread(){
+		matlabEngine = new Matlab();
+		Matlab.whenMatlabReady(this);
+	}
+	
+	@Override
+    public void run(){
+	    try
+	    {
+	      
+	    } catch (Exception e) {
+	        System.out.println(e.toString());
+	    }
+    }
+}
